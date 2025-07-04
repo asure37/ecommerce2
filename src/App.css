@@ -1,38 +1,296 @@
-.App {
+:root {
+  --primary-blue: #1e3a8a;
+  --light-blue: #3b82f6;
+  --white: #ffffff;
+  --gray-light: #f3f4f6;
+  --gray-dark: #374151;
+  --glass-bg: rgba(255,255,255,0.7);
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+
+  /* full-screen blue gradient background */
+  background: linear-gradient(
+    135deg,
+    var(--primary-blue) 0%,
+    var(--light-blue) 100%
+  );
+  background-attachment: fixed;
+  background-size: cover;
+
+  color: var(--gray-dark);
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, var(--primary-blue), var(--light-blue));
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  color: var(--white);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.header h1 {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.promo {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.cart-btn {
+  background: var(--white);
+  color: var(--primary-blue);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: transform 0.2s;
+}
+.cart-btn:hover {
+  transform: scale(1.05);
+}
+
+.step-indicator {
+  margin: 1rem 0;
+}
+.progress-wrapper {
+  background: var(--glass-bg);
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.progress-bar {
+  background: var(--light-blue);
+  height: 100%;
+  transition: width 0.3s ease;
+}
+.step-indicator p {
+  margin: 0.5rem 0 0;
+  font-weight: 500;
+  text-align: right;
+}
+
+.shop-page {
+  display: flex;
+}
+
+.sidebar {
+  width: 260px;
+  background: var(--white);
+  backdrop-filter: blur(8px);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-right: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.filters h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.filter-group {
+  margin-bottom: 1rem;
+}
+.filter-group strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+.filter-group label {
+  display: block;
+  margin-bottom: 0.4rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+.filter-group label:hover {
+  color: var(--light-blue);
+}
+
+.products h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+}
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.product-card {
+  background: var(--white);
+  padding: 1.5rem;
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+.product-card img {
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+.product-card h4 {
+  margin: 0.5rem 0;
+  font-weight: 500;
+}
+.price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+  margin: 0.5rem 0;
+}
+.size-select {
+  margin: 0.5rem 0 1rem;
+  padding: 0.4rem;
+  border: 1px solid var(--gray-light);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  width: 100%;
+}
+.add-btn {
+  background: var(--light-blue);
+  color: var(--white);
+  border: none;
+  padding: 0.6rem;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.add-btn:hover {
+  background: var(--primary-blue);
+}
+
+.no-results {
+  font-style: italic;
+  color: var(--gray-dark);
+  margin: 2rem 0;
+}
+
+.cart, .checkout, .survey {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--gray-light);
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.cart-total {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.cart-actions, .checkout-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+.back-btn {
+  background: transparent;
+  color: var(--gray-dark);
+  border: 1px solid var(--gray-dark);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.back-btn:hover {
+  background: var(--glass-bg);
+}
+.next-btn {
+  background: var(--light-blue);
+  color: var(--white);
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.next-btn:hover {
+  background: var(--primary-blue);
+}
+.remove-btn {
+  background: transparent;
+  border: none;
+  color: var(--primary-blue);
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-left: 1rem;
+  transition: color 0.2s;
+}
+.remove-btn:hover {
+  color: var(--light-blue);
 }
 
-.App-link {
-  color: #61dafb;
+.checkout label,
+.survey textarea {
+  display: block;
+  margin-bottom: 1rem;
+  width: 100%;
+  font-size: 0.95rem;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.checkout input,
+.survey textarea {
+  margin-top: 0.3rem;
+  padding: 0.5rem;
+  border: 1px solid var(--gray-light);
+  border-radius: 4px;
+  font-family: inherit;
+}
+.checkout .split {
+  display: flex;
+  gap: 1rem;
+}
+.survey textarea {
+  min-height: 120px;
+}
+.survey button {
+  float: right;
+  background: var(--light-blue);
+  color: var(--white);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.survey button:hover {
+  background: var(--primary-blue);
 }
